@@ -10,8 +10,4 @@ class Room extends Model
 {
     public $timestamps = false;
     use Uuids, HasFactory;
-
-    public function status(){
-        return $this->belongsTo(Roomstatus::class,'RoomStatus','id');
-    }
 }

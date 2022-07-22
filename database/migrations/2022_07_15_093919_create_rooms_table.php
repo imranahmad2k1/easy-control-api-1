@@ -38,7 +38,7 @@ return new class extends Migration
             $table->integer('GCRecord')->nullable()->index('iGCRecord_Rooms');
             
             $table->foreign('Floor', 'FK_Rooms_Floor')->references('id')->on('floors');
-            $table->foreign('RoomStatus', 'FK_Rooms_RoomStatuses')->references('id')->on('roomstatuses');
+            $table->foreign('RoomStatus', 'FK_Rooms_RoomStatus')->references('id')->on('roomstatus');
             $table->foreign('RoomType', 'FK_Rooms_RoomType')->references('id')->on('roomtypes');
         });
     }

@@ -8,8 +8,6 @@ use App\Http\Controllers\API\Property\PropertygradeController;
 use App\Http\Controllers\API\Property\PropertytypeController;
 use App\Http\Controllers\API\Room\RoomController;
 use App\Http\Controllers\API\Room\RoomtypeController;
-use App\Http\Controllers\API\Room\RoomstatusController;
-use App\Http\Controllers\API\Room\RoomtariffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,48 +63,15 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
     //for Room
     Route::post('/room',[RoomController::class,'store']);
-
-    Route::get('/room/all_data',[RoomController::class,'index']); //ALL
-    Route::get('/room',[RoomController::class,'showAll']); //ALL PAGINATED
-    Route::get('/room/{id}',[RoomController::class,'show']); //SHOW SPECIFIC
-
-    Route::get('/room/GetAllRoomsByRoomStatus/{id}',[RoomController::class,'findByStatus']); //FIND ROOMS BY ROOMSTATUS
-    Route::get('/room/GetAllRoomsByRoomStatusName/{name}',[RoomController::class,'findByStatusName']); //FIND ROOMS BY ROOMSTATUSNAME
-
+    Route::get('/room',[RoomController::class,'index']);
     Route::delete('/room/{room}',[RoomController::class,'destroy']);
     Route::patch('/room/{room}',[RoomController::class,'edit']);
-    
-    Route::patch('/room/{room}/{roomstatus}',[RoomController::class,'changeStatus']);
 
 
     //for RoomType
     Route::post('/roomtype',[RoomtypeController::class,'store']);
-
-    Route::get('/roomtype/all_data',[RoomtypeController::class,'index']);
-    Route::get('/roomtype/',[RoomtypeController::class,'showAll']);
-    Route::get('/roomtype/{id}',[RoomtypeController::class,'show']);
-
+    Route::get('/roomtype',[RoomtypeController::class,'index']);
     Route::delete('/roomtype/{roomtype}',[RoomtypeController::class,'destroy']);
     Route::patch('/roomtype/{roomtype}',[RoomtypeController::class,'edit']);
-
-
-    //for Roomstatus
-    Route::post('/roomstatus',[RoomstatusController::class,'store']);
-
-    Route::get('/roomstatus/all_data',[RoomstatusController::class,'index']);
-    Route::get('/roomstatus/',[RoomstatusController::class,'showAll']);
-    Route::get('/roomstatus/{id}',[RoomstatusController::class,'show']);
-
-    Route::delete('/roomstatus/{roomstatus}',[RoomstatusController::class,'destroy']);
-    Route::patch('/roomstatus/{roomstatus}',[RoomstatusController::class,'edit']);
-
-
-    //for Roomstariff
-    Route::post('/roomtariff',[RoomtariffController::class,'store']);
-    Route::get('/roomtariff/all_data',[RoomtariffController::class,'index']);
-    Route::get('/roomtariff/',[RoomtariffController::class,'showAll']);
-    Route::get('/roomtariff/{id}',[RoomtariffController::class,'show']);
-    Route::delete('/roomtariff/{roomtariff}',[RoomtariffController::class,'destroy']);
-    Route::patch('/roomtariff/{roomtariff}',[RoomtariffController::class,'edit']);
 
 });
