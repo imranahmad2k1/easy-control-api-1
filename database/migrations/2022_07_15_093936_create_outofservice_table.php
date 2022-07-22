@@ -32,7 +32,7 @@ return new class extends Migration
             $table->integer('GCRecord')->nullable()->index('iGCRecord_OutOfService');
             
             $table->foreign('Room', 'FK_OutOfService_Room')->references('id')->on('rooms');
-            $table->foreign('Status', 'FK_OutOfService_Status')->references('id')->on('roomstatus');
+            $table->foreign('Status', 'FK_OutOfService_Status')->references('id')->on('roomstatuses');
         });
     }
 

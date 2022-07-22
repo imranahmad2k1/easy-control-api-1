@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Room;
+use App\Models\Roomstatus;
 
 class RoomController extends Controller
 {
@@ -47,13 +48,13 @@ class RoomController extends Controller
             'SortKey' => 'integer|nullable',
 
             'Alias' => 'nullable',
-            'Name' => 'nullable',
+            'Name' => 'required|nullable',
             'Description' => 'nullable',
 
             'InterComNumber' => 'nullable',
             'Property' => 'nullable',
             'RoomStatus' => 'nullable',
-            'RoomType' => 'nullable',
+            'RoomType' => 'nullable', //REQUIRED ADD LATER
             'Floor' => 'nullable',
             
             'OptimisticLockField' => 'integer|nullable',
@@ -94,9 +95,27 @@ class RoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Room $id)
     {
-        
+        return response($id,200);
+    }
+
+    public function showAll(Request $req)
+    {
+        if($req->has('page') && $req->has('perpage')){
+            return response(Room::paginate($req->perpage,['*'],'page',$req->page),200);
+        }
+
+        elseif($req->has('page')){
+            return response(Room::paginate(15,['*'],'page',$req->page),200);;
+        }
+
+        elseif($req->has('perpage')){
+            return response(Room::paginate($req->perpage,['*'],'page',1),200);
+        }
+        else{
+            return response(Room::paginate(15));
+        }
     }
 
     /**
@@ -117,13 +136,13 @@ class RoomController extends Controller
             'SortKey' => 'integer|nullable',
 
             'Alias' => 'nullable',
-            'Name' => 'nullable',
+            'Name' => 'required|nullable',
             'Description' => 'nullable',
 
             'InterComNumber' => 'nullable',
             'Property' => 'nullable',
             'RoomStatus' => 'nullable',
-            'RoomType' => 'nullable',
+            'RoomType' => 'nullable', //REQIORED ADD LATER
             'Floor' => 'nullable',
             
             'OptimisticLockField' => 'integer|nullable',
@@ -177,5 +196,24 @@ class RoomController extends Controller
     public function destroy(Room $room)
     {
         return response($room->delete(), 200);
+    }
+
+    public function findByStatus($id){
+        $statusid = $id;
+        $rooms = Room::where('RoomStatus','=',$statusid)->get();
+        return response($rooms, 200);
+    }
+
+    public function findByStatusName($name){
+        $statusname = $name;
+
+        $rooms = Roomstatus::where('Name','=',$statusname)->with('rooms')->get();
+
+        return response($rooms,200);
+    }
+
+    public function changeStatus(Room $room, $roomstatus){
+        $room->RoomStatus = $roomstatus;
+        return response($room,200);
     }
 }
