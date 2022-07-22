@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roomstatus', function (Blueprint $table) {
+        Schema::create('roomstatuses', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->integer('IsActive')->nullable();
             $table->char('PropertyID', 38)->nullable();

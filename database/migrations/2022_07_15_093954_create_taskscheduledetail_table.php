@@ -41,7 +41,7 @@ return new class extends Migration
             
             $table->foreign('HouseKeeper', 'FK_TaskScheduleDetail_HouseKeeper')->references('id')->on('housekeepers');
             $table->foreign('Room', 'FK_TaskScheduleDetail_Room')->references('id')->on('rooms');
-            $table->foreign('RoomStatus', 'FK_TaskScheduleDetail_RoomStatus')->references('id')->on('roomstatus');
+            $table->foreign('RoomStatus', 'FK_TaskScheduleDetail_RoomStatus')->references('id')->on('roomstatuses');
             $table->foreign('Status', 'FK_TaskScheduleDetail_Status')->references('id')->on('status');
             $table->foreign('Task', 'FK_TaskScheduleDetail_Task')->references('id')->on('tasks');
             $table->foreign('TaskSchedule', 'FK_TaskScheduleDetail_TaskSchedule')->references('id')->on('taskschedules');
