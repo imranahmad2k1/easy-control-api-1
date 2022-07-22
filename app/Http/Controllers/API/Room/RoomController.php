@@ -206,7 +206,9 @@ class RoomController extends Controller
 
     public function findByStatusName($name){
         $statusname = $name;
+
         $rooms = Roomstatus::where('Name','=',$statusname)->with('rooms')->get();
+
         return response($rooms,200);
     }
 
