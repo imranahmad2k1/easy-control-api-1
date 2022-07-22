@@ -92,27 +92,9 @@ class RoomtypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Roomtype $id)
+    public function show($id)
     {
-        return response($id, 200);
-    }
-
-    public function showAll(Request $req)
-    {
-        if($req->has('page') && $req->has('perpage')){
-            return response(Roomtype::paginate($req->perpage,['*'],'page',$req->page),200);
-        }
-
-        elseif($req->has('page')){
-            return response(Roomtype::paginate(15,['*'],'page',$req->page),200);;
-        }
-
-        elseif($req->has('perpage')){
-            return response(Roomtype::paginate($req->perpage,['*'],'page',1),200);
-        }
-        else{
-            return response(Roomtype::paginate(15));
-        }
+        //
     }
 
     /**

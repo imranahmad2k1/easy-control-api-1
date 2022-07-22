@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roomtariffs', function (Blueprint $table) {
+        Schema::create('roomtariff', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->integer('IsActive')->nullable();
             $table->char('PropertyID', 38)->nullable();

@@ -37,7 +37,7 @@ return new class extends Migration
             $table->integer('GCRecord')->nullable()->index('iGCRecord_TaskSchedules');
             
             $table->foreign('HouseKeeper', 'FK_TaskSchedules_HouseKeeper')->references('id')->on('housekeepers');
-            $table->foreign('RoomStatus', 'FK_TaskSchedules_RoomStatus')->references('id')->on('roomstatuses');
+            $table->foreign('RoomStatus', 'FK_TaskSchedules_RoomStatus')->references('id')->on('roomstatus');
             $table->foreign('Status', 'FK_TaskSchedules_Status')->references('id')->on('status');
             $table->foreign('Task', 'FK_TaskSchedules_Task')->references('id')->on('tasks');
         });
