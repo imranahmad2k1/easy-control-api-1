@@ -65,9 +65,18 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
     //for Room
     Route::post('/room',[RoomController::class,'store']);
-    Route::get('/room',[RoomController::class,'index']);
+
+    Route::get('/room/all_data',[RoomController::class,'index']); //ALL
+    Route::get('/room',[RoomController::class,'showAll']); //ALL PAGINATED
+    Route::get('/room/{id}',[RoomController::class,'show']); //SHOW SPECIFIC
+
+    Route::get('/room/GetAllRoomsByRoomStatus/{id}',[RoomController::class,'findByStatus']); //FIND ROOMS BY ROOMSTATUS
+    Route::get('/room/GetAllRoomsByRoomStatusName/{name}',[RoomController::class,'findByStatusName']); //FIND ROOMS BY ROOMSTATUSNAME
+
     Route::delete('/room/{room}',[RoomController::class,'destroy']);
     Route::patch('/room/{room}',[RoomController::class,'edit']);
+    
+    Route::patch('/room/{room}/{roomstatus}',[RoomController::class,'changeStatus']);
 
 
     //for RoomType

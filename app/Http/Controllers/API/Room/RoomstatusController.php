@@ -173,4 +173,6 @@ class RoomstatusController extends Controller
     {
         return response($roomstatus->delete(),200);
     }
+
+    
 }
